@@ -1,0 +1,86 @@
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+class Product
+{
+public:
+	string m_productName;
+	double m_sell;
+
+	Product(const string& productName, double sell) :
+		m_productName(productName), m_sell(sell) {}
+};
+class shop
+{
+public:
+	vector<Product> products;
+
+	void addShip(const Product& product)
+	{
+		products.push_back(product);
+	}
+	double totalDollar() const
+	{
+		double total = 0.0;
+		for (const auto& product : products)
+		{
+			total += product.m_sell;
+		}
+		return total;
+	}
+};
+struct BankCard
+{
+	string m_name;
+	string m_surname;
+	string m_BankCard;
+};
+int main()
+{
+	Product item1("mystical container", 1.08);
+	Product item2("container collect them all", 1.1);
+	Product item3("container just space", 5.52);
+	Product item4("mysterious certificate", 6.0);
+
+	shop shoping;
+
+	shoping.addShip(item1);
+	shoping.addShip(item2);
+	shoping.addShip(item3);
+	shoping.addShip(item4);
+
+	cout << "Products in the store: " << endl;
+	for (const auto& product : shoping.products)
+	{
+		cout << product.m_productName << " - $" << product.m_sell << endl;
+	}
+	cout << "Total: $" << shoping.totalDollar() << endl;
+
+	BankCard bankcard;
+
+	bankcard.m_name = { "please write your name: " };
+	bankcard.m_surname = { "please write your surname: " };
+	bankcard.m_BankCard = { "please write the name of the card for example: Visa or PayPal: " };
+
+	cout << bankcard.m_name;
+	cin >> bankcard.m_name;
+	cout << bankcard.m_surname;
+	cin >> bankcard.m_surname;
+	cout << bankcard.m_BankCard;
+	cin >> bankcard.m_BankCard;
+
+	cout << "if you want to buy something from the store, write your bank card: ";
+	int userbank;
+	cin >> userbank;
+
+	cout << "you have successfully purchased! Wait for the accrual." << endl;
+
+	cout << "press any key to continue.";
+	int button;
+	cin >> button;
+
+	return 0;
+}
